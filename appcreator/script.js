@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-class UIview {
+class UIview { //this class, copy paste the whole thing for use
 
     constructor(name) {
         this.fName = name
@@ -92,7 +92,7 @@ class UIview {
     }
 }
 
-//-----------------site---------------
+//-----------------example---------------
 
 var page1 = new UIview('site/index.html')
 
