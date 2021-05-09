@@ -94,7 +94,7 @@ The action to be done on button click (e.g. `console.log('hello');`)
 ### address
 ---
 On an Image: image link (e.g. "assets/chicken.png")
-On a Link: the link adress (e.g. "pages/site2.hmtml")
+On a Link: the link adress (e.g. "pages/site2.html")
 
 ### width and height
 ---
