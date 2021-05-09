@@ -1,0 +1,10 @@
+
+                <p> Hello World! </p> <input id="somebinder" value="" placeholder="Enter some text!..." onchange="update0()"></input> <p id="sometext"> Change the input above ^^ </p> <button onclick="(function() {console.log('hi!');})();"> <p> Ooh a Button! </p> </button> <a href="page2.html"> <p> hmmm. An epic link? </p> </a>
+                <script>
+                
+                function update0() {
+                    document.getElementById("sometext").innerHTML = document.getElementById("somebinder").value
+                }
+            
+                </script>
+            
