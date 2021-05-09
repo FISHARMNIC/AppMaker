@@ -99,3 +99,7 @@ On a Link: the link adress (e.g. "pages/site2.hmtml")
 ### width and height
 ---
 The image size in pixels (e.g."100" and "50")
+
+## Running
+---
+use `my_page.call({debug = false})`
