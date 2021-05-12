@@ -1,6 +1,24 @@
 var fs = require('fs');
+var clib = (`
+    class onChange {
+        constructor(exec) {
+            this.action = exec
+            this.value = ""
+        }
 
-class UIview { //this class, copy paste the whole thing for use
+        set(val) {
+            this.value = val
+            eval.call(window, this.action)
+        }
+    }
+
+    function updateId(id, selection, val) {
+        console.log(eval(val))
+        //console.log("id " + \`document.getElementById(\"\${id}\").\${selection} = \"\${eval(val)}\"\`)
+        eval(\`document.getElementById(\"\${id}\").\${selection} = \"\${eval(val)}\"\`)
+    }
+`) //copy paste this
+class UIview { //and the entire following class
 
     constructor(name) {
         this.fName = name
@@ -21,16 +39,30 @@ class UIview { //this class, copy paste the whole thing for use
         this.allElements.push(ret)
     }
 
-    Input({ value = '', placeholder = '', bindto = '', bindtype = '', id, dummy = false }) {
+    Input({ value = ' ', placeholder = '', bindto = '', bindtype = '', id, dummy = false }) {
         var ret = `<input id="${id}" value="${value}" placeholder="${placeholder}"`
 
         if (bindto != '') {
+
             ret += ` onchange="update${this.functionCount}()"`
-            this.allScript.push(`
-                function update${this.functionCount}() {
-                    document.getElementById("${bindto}").${bindtype} = document.getElementById("${id}").value
-                }
-            `)
+            if (bindtype != 'variable') {
+                
+                this.allScript.push(`
+                    function update${this.functionCount}() {
+                        document.getElementById("${bindto}").${bindtype} = document.getElementById("${id}").value
+                    }
+                `)
+
+            } else {
+
+                this.allScript.push(`
+                    function update${this.functionCount}() {
+                        ${bindto}.set(document.getElementById("${id}").value)
+                    }
+                `)
+
+            }
+            this.functionCount += 1
         }
 
         ret += '></input>'
@@ -68,6 +100,16 @@ class UIview { //this class, copy paste the whole thing for use
         this.allElements.push(ret)
     }
 
+    // newVar({name, value = ''}) {
+    //     var ret = `var ${name}`
+    //     if (value != '') ret += ` = '${value}'`
+    //     this.allScript.unshift(ret)
+    // }
+
+    script(code) {
+        this.allScript.push(code)
+    }
+
     call({ debug = false }) {
         if (debug) {
             console.log('```````````````')
@@ -80,8 +122,10 @@ class UIview { //this class, copy paste the whole thing for use
 
         else {
             fs.writeFileSync(`${this.fName}`, `
+                
                 ${this.allElements.join(' ')}
                 <script>
+                ${clib}
                 ${this.allScript.join(' ')}
                 </script>
             `, function (err) {
@@ -92,19 +136,24 @@ class UIview { //this class, copy paste the whole thing for use
     }
 }
 
-//-----------------example---------------
+//add var binding
+//-----------------site---------------
 
 var page1 = new UIview('site/index.html')
 
-    page1.Text({
-        value: 'Hello World!',
-    })
+    page1.script(
+        `
+        var action = "bindthing.value.split(' ').map((word) => word && '🍕').join(' ')"
+        var bindthing = new onChange("updateId('sometext', 'innerHTML', action)")
+        
+        `
+    )
 
     page1.Input({
         id: "somebinder",
         placeholder: "Enter some text!...",
-        bindto: "sometext",
-        bindtype: "innerHTML"
+        bindto: "bindthing",
+        bindtype: "variable"
     })
 
     page1.Text({
@@ -112,41 +161,7 @@ var page1 = new UIview('site/index.html')
         id: 'sometext'
     })
 
-    page1.Button({
-        view: page1.Text({
-            dummy: true,
-            value: "Ooh a Button!"
-        }),
-        action: "console.log('hi!');",
-        actionIsString: true
-    })
-
-    page1.Link({
-        view: page1.Text({
-            dummy: true,
-            value: "hmmm. An epic link?"
-        }),
-        address: "page2.html"
-    })
-
     page1.call({ debug: false })
-
-//page2
-var page2 = new UIview('site/page2.html')
-
-    page2.Text({
-        value:"Woah 😳... An image as A link/button?!"
-    })
-
-    page2.Link({
-        view: page2.Image({
-            dummy: true,
-            address: "assets/fboy.jpg"
-        }),
-        address: "index.html"
-    })
-
-    page2.call({ debug: false })
 
 
 
