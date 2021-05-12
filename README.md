@@ -2,6 +2,7 @@
 ##### A sort-of ReactNative/SwiftUI type library for Web Apps. (WIP)
 ---
 #### How To Import
+- Copy and paste the variable clib into your js file
 - copy & paste the class UIview into your js file
 #### How to Use
 ##### Creating pages
