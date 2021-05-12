@@ -18,7 +18,7 @@ However, this only supports one way bindings **and will return an error**
 - This means that changing the variable's value **will not** update the value of the input field (two-way binding)
 - This also means that the entire thing wont work because it relies on an unexisting method
 - To fix this, you must create `bindthing` as an `onChange` class
-- To do this, define `bindthing` as the following: `var bindthing = new onChange("action/text")`
+- To do this, define `bindthing` as the following: `var bindthing = new onChange("action")`
 - For a two-way binding, use: `var bindthing = new onChange("updateId(id, selector, action)")`
 - This makes to so whenever bindthing is changed, it will run `updateId` (which is included in `clib`)
   - Change `id` to whatever element's Id you want to set (in this case "somebinder")
