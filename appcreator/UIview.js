@@ -14,9 +14,12 @@ var clib = (`
     }
 
     function updateId(id, selection, val) {
-        console.log(eval(val))
-        //console.log("id " + \`document.getElementById(\"\${id}\").\${selection} = \"\${eval(val)}\"\`)
-        eval(\`document.getElementById(\"\${id}\").\${selection} = \"\${eval(val)}\"\`)
+        try {
+            eval(\`document.getElementById(\"\${id}\").\${selection} = \"\${eval(val)}\"\`)
+        } catch(err) {
+            eval(\`document.getElementById(\"\${id}\").\${selection} = \"\${val}\"\`)
+        }
+        
     }
 `)
 
@@ -137,5 +140,3 @@ module.exports =  class UIview {
         }
     }
 }
-
-//module.exports = UIview
