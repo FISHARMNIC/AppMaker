@@ -1,6 +1,26 @@
 
+                
                 <p> Woah 😳... An image as A link/button?! </p> <a href="index.html"> <img src="assets/fboy.jpg" width="50" height="50"></img> </a>
                 <script>
+                
+    class onChange {
+        constructor(exec) {
+            this.action = exec
+            this.value = ""
+        }
+
+        set(val) {
+            this.value = val
+            eval.call(window, this.action)
+        }
+    }
+
+    function updateId(id, selection, val) {
+        console.log(eval(val))
+        //console.log("id " + `document.getElementById("${id}").${selection} = "${eval(val)}"`)
+        eval(`document.getElementById("${id}").${selection} = "${eval(val)}"`)
+    }
+
                 
                 </script>
             
