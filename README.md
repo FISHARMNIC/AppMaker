@@ -3,8 +3,8 @@
 ##### Also see [this](https://github.com/FISHARMNIC/AppMaker/blob/main/Learn.md)
 ---
 #### How To Import
-- Copy and paste the variable clib into your js file
-- copy & paste the class UIview into your js file
+- Download `UIview.js`
+- Supposing it's in the same directory: `const UIview = require('./UIview.js');`
 #### How to Use
 ##### Creating pages
 ``` 
