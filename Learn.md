@@ -29,20 +29,17 @@ However, this only supports one way bindings **and will return an error**
 var action = "bindthing.value.split(' ').map((word) => word && '🍕').join(' ')" //seperate to help with one-line cramming
 var bindthing = new onChange("updateId('sometext', 'innerHTML', action)") //all strings
 ```
-If you want you action to be static (e.g. just set the text to "bob" whenever its changed), `action` must be a double-string
-- This can be done with the following syntax: `var action = '"bob"'` <-- double quotes **of different types** 
+If you want you action to be static (e.g. just set the text to "bob" whenever its changed), `action` can also just be a string, number, or anything
 
 A working snippet can be seen here
 ```
-var fs = require('fs');
-var clib = (`stuff`) // you need to import this, im not pasting it here because its too long
-class UIview() //same here
+const UIview = require('./UIview.js'); //import
 
 var page1 = new UIview('site/index.html') //create the page
 
     page1.script( //include scripts
         `
-        //var action = '"bob"' <-- example double-string
+        //var action = "bob" <-- example string
         var action = "bindthing.value.split(' ').map((word) => word && '🍕').join(' ')" //helps with cramming 
         var bindthing = new onChange("updateId('sometext', 'innerHTML', action)") // whenver bindthing is updated, update "sometext" by running "action" (above)
         
