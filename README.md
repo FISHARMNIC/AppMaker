@@ -1,4 +1,4 @@
-# AppMaker
+# AppMaker v1.1
 ##### A sort-of ReactNative/SwiftUI type library for Web Apps. (WIP)
 ##### Also see [this](https://github.com/FISHARMNIC/AppMaker/blob/main/Learn.md)
 ---
