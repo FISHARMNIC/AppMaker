@@ -4,7 +4,7 @@ when creating a new script, run `page_name.script("code")`.
 - This creates a new script element. 
 - Make sure to run this **before** any other element
 ---
-Importing `clib` allows for the use of easy binding between elements and variables
+Importing `clib` (UIview already imports it as of 1.1) allows for the use of easy binding between elements and variables
 - To bind an input to a variable, use the `bindto` and `bindtype` parameters as shown
 ```
 page1.Input({
