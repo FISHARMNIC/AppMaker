@@ -5,12 +5,9 @@ const UIview = require('./UIview.js');
 
 var page1 = new UIview('site/index.html')
 
-    page1.script(
-        `
+    page1.script(function(){
         var bindthing = new onChange("updateId('sometext', 'innerHTML', 'bindthing.value')")
-        
-        `
-    )
+    })
 
     page1.Text({
         value: 'Hello World!',

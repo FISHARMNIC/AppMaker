@@ -1,6 +1,6 @@
 
                 
-                <p> Hello World! </p> <input id="somebinder" value=" " placeholder="Enter some text!..." onchange="update0()"></input> <p id="sometext"> Change the input above ^^ </p> <button onclick="(function() {console.log('hi!');})();"> <p> Ooh a Button! </p> </button> <a href="page2.html"> <p> hmmm. An epic link? </p> </a>
+                <input id="somebinder" value=" " placeholder="Enter some text!..." onchange="update0()"></input> <p id="sometext"> Change the input above ^^ </p>
                 <script>
                 
     class onChange {
@@ -16,15 +16,18 @@
     }
 
     function updateId(id, selection, val) {
-        console.log(eval(val))
-        //console.log("id " + `document.getElementById("${id}").${selection} = "${eval(val)}"`)
-        eval(`document.getElementById("${id}").${selection} = "${eval(val)}"`)
+        try {
+            eval(`document.getElementById("${id}").${selection} = "${eval(val)}"`)
+        } catch(err) {
+            eval(`document.getElementById("${id}").${selection} = "${val}"`)
+        }
+        
     }
 
                 
-        var bindthing = new onChange("updateId('sometext', 'innerHTML', 'bindthing.value')")
-        
-         
+        var action = "bindthing.value.split(' ').map((word) => word && '🍕').join(' ')"
+        var bindthing = new onChange("updateId('sometext', 'innerHTML', action)")
+     
                     function update0() {
                         bindthing.set(document.getElementById("somebinder").value)
                     }

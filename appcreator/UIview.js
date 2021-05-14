@@ -112,7 +112,7 @@ module.exports =  class UIview {
     // }
 
     script(code) {
-        this.allScript.push(code)
+        this.allScript.push(code.toString().substring(11).slice(0, -1))
     }
 
     call({ debug = false } = {}) {
