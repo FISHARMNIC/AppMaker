@@ -41,7 +41,7 @@ var page1 = new UIview('site/index.html') //create the page
         `
         //var action = "bob" <-- example string
         var action = "bindthing.value.split(' ').map((word) => word && '🍕').join(' ')" //helps with cramming 
-        var bindthing = new onChange("updateId('sometext', 'innerHTML', action)") // whenver bindthing is updated, update "sometext" by running "action" (above)
+        var bindthing = new onChange("updateId('sometext', 'innerHTML', action)") // whenever bindthing is updated, update "sometext" by running "action" (above)
         
         `
     )
