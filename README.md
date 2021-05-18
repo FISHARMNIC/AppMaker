@@ -134,7 +134,7 @@ page1.script( //includes the script (do this at the beginning)
 Some people may know the [React Native "Pizza Translator" equivalent](https://reactnative.dev/docs/handling-text-input). Here is a working duplicate
 ```
 //include stuff
-
+//NOT WORKING SEE LEARN.MD FILE
 var page1 = new UIview('site/index.html')
 
     page1.script(
