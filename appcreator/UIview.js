@@ -49,7 +49,7 @@ module.exports =  class UIview {
 
         if (bindto != '') {
 
-            ret += ` onchange="update${this.functionCount}()"`
+            ret += ` onkeydown="update${this.functionCount}()"`
 
             if (bindtype != 'variable') {
                 
@@ -115,6 +115,30 @@ module.exports =  class UIview {
         this.allScript.push(code.toString().substring(11).slice(0, -1))
     }
 
+    Spacer() {
+        this.allElements.push('<div style="flex-grow: 1; "></div>')
+    }
+
+    Break() {
+        this.allElements.push('<br>')
+    }
+
+    Center() {
+        this.allElements.push('<div style="display: flex; width: 100%; height: 100%; justify-content: center; align-items: center; overflow: hidden;">')
+    }
+
+    Vstack() {
+        this.allElements.push('<div style="display: flex; flex-direction: column; align-items: center; height: 100%;">')
+    }
+
+    HStack() {
+        this.allElements.push('<div style="display: flex; flex-direction: row; align-items: center; width: 100%; height: 100%;">')
+    }
+
+    Exit() {
+        this.allElements.push("</div>")
+    }
+
     call({ debug = false } = {}) {
         if (debug) {
             console.log('```````````````')
@@ -129,6 +153,7 @@ module.exports =  class UIview {
             fs.writeFileSync(`${this.fName}`, `
                 
                 ${this.allElements.join(' ')}
+                
                 <script>
                 ${clib}
                 ${this.allScript.join(' ')}
